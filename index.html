@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio de Karim KHITER - Data Engineer</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <style>
+        /* Styles additionnels pour la page d'accueil enrichie */
+        .skills-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .skills-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .skills-intro {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .skills-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+        }
+
+        .skill-category-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .skill-category h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-badge {
+            background: white;
+            color: #667eea;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 2px solid #e8ebf7;
+            font-weight: 500;
+        }
+
+        .values-section {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .values-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            color: white;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .value-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .value-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .value-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .value-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .cta-section {
+            padding: 80px 0;
+            text-align: center;
+            background: #f8f9fa;
+        }
+
+        .cta-section h2 {
+            font-size: 2.3rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .skills-section h2,
+            .values-section h2,
+            .cta-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .skills-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Karim KHITER</div>
+            
+            <button class="burger-menu" aria-label="Menu">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+            </button>
+            
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Accueil</a></li>
+                <li><a href="pages/about.html">À Propos</a></li>
+                <li><a href="pages/cv.html">CV</a></li>
+                <li><a href="pages/projets.html">Projets</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Karim KHITER</h1>
+                <p class="hero-subtitle">Futur Data Engineer passionné par la visualisation et l'analyse de données</p>
+                <p class="hero-description">
+                    Actuellement en 2ème année de BUT Sciences des Données à l'IUT de Metz, 
+                    je me spécialise dans la visualisation et la conception d'outils décisionnels (VCOD).
+                    Mon objectif : transformer les données en décisions stratégiques.
+                </p>
+                <div class="hero-buttons">
+                    <a href="pages/projets.html" class="btn btn-primary">Voir mes projets</a>
+                    <a href="pages/cv.html" class="btn btn-secondary">Consulter mon CV</a>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <h3>Python</h3>
+                    <p>Langage principal</p>
+                </div>
+                <div class="stat-card">
+                    <h3>SQL</h3>
+                    <p>Bases de données</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Power BI</h3>
+                    <p>Visualisation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Compétences -->
+    <section class="skills-section">
+        <div class="container">
+            <h2>Mes Compétences</h2>
+            <p class="skills-intro">
+                Un ensemble de compétences techniques et méthodologiques pour transformer 
+                vos données en véritables outils décisionnels
+            </p>
+
+            <div class="skills-categories">
+                <div class="skill-category">
+                    <div class="skill-category-icon">💻</div>
+                    <h3>Langages & Programmation</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">Python</span>
+                        <span class="skill-badge">SQL</span>
+                        <span class="skill-badge">R</span>
+                        <span class="skill-badge">Bash</span>
+                        <span class="skill-badge">HTML/CSS</span>
+                        <span class="skill-badge">JavaScript</span>
+                        <span class="skill-badge">VBA</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-icon">🛠️</div>
+                    <h3>Outils & Technologies</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">Power BI</span>
+                        <span class="skill-badge">Excel</span>
+                        <span class="skill-badge">RStudio</span>
+                        <span class="skill-badge">VS Code</span>
+                        <span class="skill-badge">DuckDB</span>
+                        <span class="skill-badge">Access</span>
+                        <span class="skill-badge">WebScraper</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-icon">💾</div>
+                    <h3>Bases de Données</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">Modélisation MCD</span>
+                        <span class="skill-badge">Méthode Merise</span>
+                        <span class="skill-badge">MLD</span>
+                        <span class="skill-badge">Gestion BDD</span>
+                        <span class="skill-badge">Optimisation</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-icon">📊</div>
+                    <h3>Data & Analyse</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">Web Scraping</span>
+                        <span class="skill-badge">ETL</span>
+                        <span class="skill-badge">Nettoyage données</span>
+                        <span class="skill-badge">Statistiques</span>
+                        <span class="skill-badge">Modélisation</span>
+                        <span class="skill-badge">Visualisation</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-icon">📈</div>
+                    <h3>Business Intelligence</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">Dashboards</span>
+                        <span class="skill-badge">Tableaux décisionnels</span>
+                        <span class="skill-badge">KPIs</span>
+                        <span class="skill-badge">Reporting</span>
+                        <span class="skill-badge">Automatisation</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-icon">🔄</div>
+                    <h3>Traitement de Données</h3>
+                    <div class="skill-items">
+                        <span class="skill-badge">Extraction</span>
+                        <span class="skill-badge">Transformation</span>
+                        <span class="skill-badge">Croisement</span>
+                        <span class="skill-badge">Fichiers CSV</span>
+                        <span class="skill-badge">APIs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Valeurs / Savoir-être -->
+    <section class="values-section">
+        <div class="container">
+            <h2>Ma Philosophie de Travail</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h3>Autonomie</h3>
+                    <p>Capacité à travailler de manière indépendante et à m'auto-former sur les nouvelles technologies</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🔍</div>
+                    <h3>Rigueur & Analyse</h3>
+                    <p>Esprit d'analyse développé et rigueur méthodologique dans le traitement des données</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">⏱️</div>
+                    <h3>Gestion du Temps</h3>
+                    <p>Organisation efficace et respect des délais dans la réalisation des projets</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">👥</div>
+                    <h3>Travail d'Équipe</h3>
+                    <p>Expérience dans la gestion de groupe et la collaboration sur des projets data</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">💡</div>
+                    <h3>Accessibilité</h3>
+                    <p>Volonté de rendre la data accessible et compréhensible pour tous les publics</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🚀</div>
+                    <h3>Innovation</h3>
+                    <p>Toujours à l'affût des nouvelles méthodes et outils pour optimiser l'analyse de données</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Intéressé par mon profil ?</h2>
+            <p>
+                Je suis disponible pour des stages, alternances ou projets freelance en data engineering 
+                et business intelligence. N'hésitez pas à consulter mes réalisations !
+            </p>
+            <div class="cta-buttons">
+                <a href="pages/projets.html" class="btn btn-primary">Découvrir mes projets</a>
+                <a href="pages/cv.html" class="btn btn-secondary">Télécharger mon CV</a>
+                <a href="pages/about.html" class="btn btn-secondary">En savoir plus</a>
+            </div>
+        </div>
+    </section>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>
