@@ -250,8 +250,32 @@ body
 {
 	display: flex;
 	justify-content: center;
+	align-items: center;
 }
 
+/* Nouveau conteneur pour l'image de profil réelle */
+.profile-image-container
+{
+	width: 300px;
+	height: 300px;
+	border-radius: 50%;
+	overflow: hidden;
+	box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+	border: 5px solid white;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	position: relative;
+}
+
+/* Style pour l'image de profil */
+.profile-image-container img
+{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+
+/* Placeholder si pas d'image */
 .profile-placeholder
 {
 	width: 300px;
@@ -259,6 +283,12 @@ body
 	border-radius: 50%;
 	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 	box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	font-size: 4rem;
+	font-weight: 700;
 }
 
 .about-text h2
@@ -825,41 +855,53 @@ body
 		left: 0;
 	}
 
+	/* Animation en cascade avec effet de fondu pour chaque élément du menu */
 	.nav-links li
 	{
 		margin: 0;
 		width: 100%;
 		opacity: 0;
-		transform: translateX(50px);
-		animation: slideIn 0.4s ease forwards;
+		transform: translateY(-20px);
+		transition: opacity 0.5s ease, transform 0.5s ease;
 	}
 
+	/* Délais progressifs pour l'apparition en cascade */
 	.nav-links.active li:nth-child(1)
 	{
+		animation: fadeInDown 0.6s ease forwards;
 		animation-delay: 0.1s;
 	}
 
 	.nav-links.active li:nth-child(2)
 	{
-		animation-delay: 0.2s;
+		animation: fadeInDown 0.6s ease forwards;
+		animation-delay: 0.25s;
 	}
 
 	.nav-links.active li:nth-child(3)
 	{
-		animation-delay: 0.3s;
+		animation: fadeInDown 0.6s ease forwards;
+		animation-delay: 0.4s;
 	}
 
 	.nav-links.active li:nth-child(4)
 	{
-		animation-delay: 0.4s;
+		animation: fadeInDown 0.6s ease forwards;
+		animation-delay: 0.55s;
 	}
 
-	@keyframes slideIn
+	/* Animation de fondu entrant avec descente */
+	@keyframes fadeInDown
 	{
-		to
+		0%
+		{
+			opacity: 0;
+			transform: translateY(-20px);
+		}
+		100%
 		{
 			opacity: 1;
-			transform: translateX(0);
+			transform: translateY(0);
 		}
 	}
 
@@ -870,6 +912,7 @@ body
 		font-size: 1.5rem;
 		font-weight: 600;
 		width: 100%;
+		transition: background 0.3s ease, transform 0.2s ease;
 	}
 
 	.nav-links a:hover
@@ -919,6 +962,8 @@ body
 		gap: 30px;
 	}
 
+	/* Adaptation du conteneur d'image pour mobile */
+	.profile-image-container,
 	.profile-placeholder
 	{
 		width: 200px;
@@ -990,6 +1035,8 @@ body
 		gap: 30px;
 	}
 
+	/* Adaptation du conteneur d'image pour tablette */
+	.profile-image-container,
 	.profile-placeholder
 	{
 		width: 250px;

@@ -1,32 +1,57 @@
-// Gestion du menu burger
+// Gestion du menu burger avec overlay
 function initBurgerMenu() {
     const burgerMenu = document.querySelector('.burger-menu');
     const navLinks = document.querySelector('.nav-links');
+    const body = document.body;
     
     if (burgerMenu && navLinks) {
-        burgerMenu.addEventListener('click', function() {
-            this.classList.toggle('active');
-            navLinks.classList.toggle('active');
+        // Fonction pour ouvrir le menu
+        function openMenu() {
+            burgerMenu.classList.add('active');
+            navLinks.classList.add('active');
+            body.classList.add('menu-open');
+        }
+        
+        // Fonction pour fermer le menu
+        function closeMenu() {
+            burgerMenu.classList.remove('active');
+            navLinks.classList.remove('active');
+            body.classList.remove('menu-open');
+        }
+        
+        // Toggle du menu au clic sur le burger
+        burgerMenu.addEventListener('click', function(event) {
+            event.stopPropagation();
+            
+            if (navLinks.classList.contains('active')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
         });
         
         // Fermer le menu quand on clique sur un lien
         const links = document.querySelectorAll('.nav-links a');
         links.forEach(link => {
             link.addEventListener('click', function() {
-                burgerMenu.classList.remove('active');
-                navLinks.classList.remove('active');
+                closeMenu();
             });
         });
         
-        // Fermer le menu si on clique en dehors
+        // Fermer le menu si on clique sur l'overlay (en dehors du menu)
         document.addEventListener('click', function(event) {
             const isClickInsideNav = navLinks.contains(event.target);
             const isClickOnBurger = burgerMenu.contains(event.target);
             
+            // Si le menu est ouvert et qu'on clique ni sur le menu ni sur le burger
             if (!isClickInsideNav && !isClickOnBurger && navLinks.classList.contains('active')) {
-                burgerMenu.classList.remove('active');
-                navLinks.classList.remove('active');
+                closeMenu();
             }
+        });
+        
+        // Empêcher la propagation des clics à l'intérieur du menu
+        navLinks.addEventListener('click', function(event) {
+            event.stopPropagation();
         });
     }
 }
