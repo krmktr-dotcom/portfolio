@@ -59,12 +59,12 @@ function initBurgerMenu() {
 // Données des projets
 const projectsData = [
     {
-        title: "Pipeline ETL Météo",
-        description: "Extraction, transformation et chargement de données météorologiques depuis l'API OpenWeather vers PostgreSQL avec Python.",
-        categories: ["etl", "db"],
-        tech: "Python, Pandas, PostgreSQL, Airflow",
-        icon: "🌤️",
-        link: "#"
+        title: "Préparation et synthèse d'un tableau de données",
+        description: "Préparation et synthèse d'un tableau de données",
+        categories: ["viz"],
+        tech: "Excel",
+        icon: "📊",
+        link:  "projets/SAE103.html"
     },
     {
         title: "Dashboard Power BI - Ventes",

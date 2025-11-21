@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAÉ 1.03 - Préparation et synthèse d'un tableau de données</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f8f9fa;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Container principal */
+        .project-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Titre principal */
+        .main-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        /* Grille 2x2 avec fusion */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+
+        .grid-item {
+            padding: 25px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .grid-item-title {
+            font-weight: 700;
+            color: #667eea;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .grid-item-content {
+            color: #555;
+            font-size: 1rem;
+        }
+
+        .grid-item.spanning {
+            grid-row: 1 / 3;
+        }
+
+        .grid-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .grid-item ul li {
+            padding: 5px 0 5px 20px;
+            position: relative;
+            color: #555;
+        }
+
+        .grid-item ul li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Sections de contenu */
+        .content-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .subsection-title {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .subsection-title:first-of-type {
+            margin-top: 0;
+        }
+
+        .content-text {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .content-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .content-section ul li {
+            padding: 5px 0 5px 20px;
+            position: relative;
+            color: #555;
+        }
+
+        .content-section ul li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+
+        /* Tableau d'auto-évaluation */
+        .evaluation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            overflow-x: auto;
+            display: block;
+        }
+
+        .evaluation-table table {
+            width: 100%;
+            min-width: 600px;
+        }
+
+        .evaluation-table th {
+            background: #667eea;
+            color: white;
+            padding: 15px 10px;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid #5568d3;
+        }
+
+        .evaluation-table th:first-child {
+            width: 30%;
+        }
+
+        .evaluation-table td {
+            padding: 12px 10px;
+            border: 1px solid #e0e0e0;
+            color: #555;
+        }
+
+        .evaluation-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .evaluation-table tr:hover {
+            background: #e8ebf7;
+        }
+
+        .check-mark {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .main-title {
+                font-size: 1.8rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+            }
+
+            .grid-item.spanning {
+                grid-row: auto;
+            }
+
+            .content-section {
+                padding: 20px;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+            .evaluation-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Portfolio Data</div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="about.html">À Propos</a></li>
+                <li><a href="cv.html">CV</a></li>
+                <li><a href="projets.html" class="active">Projets</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="project-container">
+        <h1 class="main-title">SAÉ 1.03 - Préparation et synthèse d'un tableau de données en vue d'une analyse exploratoire simple</h1>
+
+        <!-- Grille 2x2 avec fusion -->
+        <div class="info-grid">
+            <div class="grid-item">
+                <div class="grid-item-title">Compétences ciblées</div>
+                <div class="grid-item-content">
+                    Réaliser - Développer des applications informatiques simples
+                </div>
+            </div>
+
+            <div class="grid-item spanning">
+                <div class="grid-item-title">Apprentissages critiques</div>
+                <ul>
+                    <li>Appréhender un problème d'informatisation d'un processus</li>
+                    <li>Mettre en place les outils de développement</li>
+                    <li>Coder et tester une application</li>
+                    <li>Découvrir les bases de la programmation</li>
+                    <li>Manipuler des structures de données simples</li>
+                </ul>
+            </div>
+
+            <div class="grid-item">
+                <div class="grid-item-title">Volume horaire</div>
+                <div class="grid-item-content">
+                    15 heures
+                </div>
+            </div>
+        </div>
+
+        <!-- Ressources mobilisées -->
+        <div class="content-section">
+            <h2 class="section-title">Ressources mobilisées et combinées :</h2>
+            
+            <h3 class="subsection-title">Ressources universitaires</h3>
+            <p class="content-text">
+                Cette SAÉ mobilise les ressources R1.01 (Initiation au développement) et R1.07 (Outils mathématiques pour l'informatique) du programme BUT Informatique.
+            </p>
+
+            <h3 class="subsection-title">Technologies utilisées</h3>
+            <ul>
+                <li>Python 3.x</li>
+                <li>Bibliothèques : Pandas, NumPy, Matplotlib</li>
+                <li>Jupyter Notebook</li>
+                <li>Git pour le versionnement</li>
+            </ul>
+
+            <h3 class="subsection-title">Ressources documentaires</h3>
+            <ul>
+                <li>Documentation officielle Python</li>
+                <li>Tutoriels Pandas pour la manipulation de données</li>
+                <li>Supports de cours fournis par l'enseignant</li>
+                <li>Articles académiques sur l'analyse exploratoire de données</li>
+            </ul>
+        </div>
+
+        <!-- Objectifs -->
+        <div class="content-section">
+            <h2 class="section-title">Objectifs et problématique professionnelle</h2>
+            <p class="content-text">
+                L'objectif de cette SAÉ est d'apprendre à préparer et synthétiser un tableau de données brutes en vue d'une analyse exploratoire. Dans un contexte professionnel, cette compétence est essentielle pour tout data analyst ou développeur amené à travailler avec des données réelles, souvent incomplètes ou mal formatées.
+            </p>
+            <p class="content-text">
+                La problématique consiste à transformer des données brutes issues de sources diverses (fichiers CSV, bases de données) en un format exploitable permettant d'extraire des informations pertinentes et de réaliser des visualisations significatives.
+            </p>
+        </div>
+
+        <!-- Descriptif générique -->
+        <div class="content-section">
+            <h2 class="section-title">Descriptif générique :</h2>
+            <p class="content-text">
+                Cette SAÉ se déroule en plusieurs étapes clés :
+            </p>
+            <ul>
+                <li>Collecte et import des données depuis différentes sources</li>
+                <li>Nettoyage des données : gestion des valeurs manquantes, correction des erreurs de saisie</li>
+                <li>Transformation et normalisation des données</li>
+                <li>Création de statistiques descriptives (moyenne, médiane, écart-type)</li>
+                <li>Visualisation des données à l'aide de graphiques appropriés</li>
+                <li>Rédaction d'un rapport de synthèse présentant les résultats obtenus</li>
+            </ul>
+            <p class="content-text">
+                Le travail se fait en binôme et donne lieu à une soutenance orale où les étudiants présentent leur démarche et leurs résultats.
+            </p>
+        </div>
+
+        <!-- Grille d'auto-évaluation -->
+        <div class="content-section">
+            <h2 class="section-title">Grille d'auto-évaluation des apprentissages critiques</h2>
+            <div class="evaluation-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Compétence</th>
+                            <th>Insuffisant</th>
+                            <th>Bien</th>
+                            <th>Très bien</th>
+                            <th>Excellent</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Import et lecture de données</td>
+                            <td></td>
+                            <td class="check-mark">✓</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Nettoyage des données</td>
+                            <td></td>
+                            <td></td>
+                            <td class="check-mark">✓</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Calculs statistiques</td>
+                            <td></td>
+                            <td></td>
+                            <td class="check-mark">✓</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Visualisation de données</td>
+                            <td></td>
+                            <td class="check-mark">✓</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Documentation et commentaires du code</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="check-mark">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Qualité du rapport de synthèse</td>
+                            <td></td>
+                            <td></td>
+                            <td class="check-mark">✓</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Descriptif personnel -->
+        <div class="content-section">
+            <h2 class="section-title">Descriptif personnel</h2>
+            <p class="content-text">
+                Dans le cadre de cette SAÉ, j'ai travaillé sur un jeu de données concernant les ventes d'une entreprise fictive sur une période de 12 mois. Le dataset contenait initialement 5000 lignes avec de nombreuses valeurs manquantes et des incohérences.
+            </p>
+            <p class="content-text">
+                Ma première étape a consisté à analyser la structure des données et à identifier les problèmes de qualité. J'ai ensuite développé un script Python utilisant Pandas pour nettoyer automatiquement le dataset : suppression des doublons, imputation des valeurs manquantes par la médiane pour les données numériques, et standardisation des formats de date.
+            </p>
+            <p class="content-text">
+                J'ai ensuite calculé des statistiques descriptives pour chaque colonne numérique et créé plusieurs visualisations : un histogramme des ventes par mois, un diagramme circulaire de la répartition par catégorie de produits, et un graphique en ligne montrant l'évolution du chiffre d'affaires.
+            </p>
+            <p class="content-text">
+                Ce projet m'a permis de comprendre l'importance de la qualité des données dans tout processus d'analyse. J'ai également appris à structurer mon code de manière modulaire avec des fonctions réutilisables, ce qui facilite grandement la maintenance et l'évolution du programme.
+            </p>
+            <p class="content-text">
+                Les principales difficultés rencontrées concernaient la gestion des dates au format américain et la détection automatique des outliers. J'ai résolu ces problèmes en consultant la documentation Pandas et en échangeant avec mes camarades de promotion.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
